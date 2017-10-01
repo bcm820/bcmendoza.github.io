@@ -26,15 +26,18 @@ h1{
 h2{
     font-size: 18px;
     font-weight: lighter;
-    margin-bottom: 5px;
 }
 
 p{
     margin-top: 5px;
-    margin-bottom: 2px;
+    margin-bottom: 12px;
 }
 
-ul, li{
+ul{
+    margin-bottom: 12px;
+}
+
+li{
     list-style-position: inside;
     text-indent: 2px;
 }
@@ -54,7 +57,7 @@ ul, li{
 #launch{
     width: 100px;
     margin-left: 180px;
-    margin-top: 10px;
+    margin-top: 20px;
     padding: 3px;
     border: 1px solid #555555; 
     box-shadow: 1px 1px 1px #555555;

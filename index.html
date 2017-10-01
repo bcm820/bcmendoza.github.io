@@ -1,13 +1,13 @@
 <html>
 <head>
 <link rel=stylesheet href=style.css>
-<title>Mad Libs!</title>
+<title>Mad Libs</title>
 </head>
 <body>
     <div id=container>
-        <h1 id=title>Your Epic Adventure!</h1>
+        <h1 id=title>Mad Libs!</h1>
         <div id=story>
-            <h2>Let's write a 'random' story! Press launch & enter words into the prompts to create your own epic adventure!</h2>
+            <h2>Let's write a 'random' story! Mad Libs is a word game that prompts a player for a list of words to substitute for blanks in a customized story. Press 'Launch', enter your username, and begin entering words into the prompts to craft an epic adventure! What will you come up with?</h2>
             <button id=launch onclick=madLibs()>Launch!</button>
         </div>
     </div>
@@ -16,13 +16,13 @@
 
 function madLibs(){
 
-    // Create parts-of-speech prompts
+    // Array with parts-of-speech prompts
     var speech = [
         'Enter a noun (e.g. dog)',
         'Enter a pronoun (e.g. she)',
         'Enter a verb (e.g. laugh)',
         'Enter an adjective (e.g. funny)',
-        'Enter an adverb (e.g. funnily)',
+        'Enter an adverb (e.g. strangely)',
         'Enter a preposition (e.g. with, until)',
         'Enter a conjunction (e.g. and, but, because)',
         'Enter an interjection (e.g. Wow!, Doh!)'
@@ -33,13 +33,19 @@ function madLibs(){
 
     // Request username and greet user
     var name = window.prompt('First, please enter your username!');
-    alert(`Hello, ${name}! Let's begin our story. Once upon a time...`)
+    if (name === null) {                        // Require username
+            name = window.prompt('No, really, please enter a username!');
+            if (name == null) {
+                name = '(Nobody)'
+            }
+        }
+    alert(`Hello, ${name}! Let's begin our story. Once upon a time...`);
     
     // Loop per round of prompts
     for (var round = 1; round > 0; round++) {
         
         var types = Math.floor(Math.random() * 8);  // Randomize prompt
-        word = window.prompt(speech[types]);    // Prompt user according to random input type
+        word = window.prompt(`(${round}) ` + speech[types]);        // Prompt user according to random input type
 
         if (word === null) {                    // If user presses 'Cancel', break loop
             break;
@@ -49,34 +55,34 @@ function madLibs(){
         }
 
         // Send alerts at certain rounds
-        if (round == 8){
+        if (round == 8) {
             alert(`Keep on going, ${name}! This story is shaping up nicely! :)`)
         }
-        if (round == 16){
+        if (round == 15) {
             alert(`${name}, you can 'Cancel' anytime to see your story, or wait 'til the very end!`)
         }
-        if (round == 20){
-            alert(`${name}, I think you should just 'Cancel' and take a break :)`)
+        if (round == 20) {
+            alert(`${name}, are you sure you don't need to take a break? Up to you :)`)
         }
     }
 
     // Base story on how many rounds they went
-    if (round < 10){
+    if (round < 10) {
         var summary = 'They were not very patient!'
     }
-    else if (round < 17){
+    else if (round < 17) {
         var summary = 'They were very patient!'
     }
-    else if (round >= 17){
+    else if (round >= 17) {
         var summary = 'They were very gullible!'
     }
     
     // Output results and explanations for story
     var results = (`
         <h2>LOL! The jokes on you! The real story is...</h2>
-        <p>"There once was a person named ${name}. ${summary}"<br>&nbsp;</p>
+        <p>"There once was a person named ${name}. ${summary}"</p>
         <h2>What just happened?</h2>
-        <p>You were tricked into an infinite loop of prompts!<br>&nbsp;</p>
+        <p>You were tricked into a randomized, infinite loop of prompts!</p>
         <h2>You 'scored' ${round-1} words!</h2>
         <p>${name}, here are your results:</p>
         <ul><li>Nouns (${logs[0].length}):${logs[0]}</li>
@@ -87,10 +93,11 @@ function madLibs(){
             <li>Prepositions (${logs[5].length}):${logs[5]}</li>
             <li>Conjunctions (${logs[6].length}):${logs[6]}</li>
             <li>Interjections (${logs[7].length}):${logs[7]}</li></ul>
-        <p>Share this with a friend & see how long they last!</p>
+        <h2>Share this with a friend & see how long they last!</h2>
     `)
-    document.getElementById('title').innerHTML = '<h1>JUST KIDDING!</h1>'
+    document.getElementById('title').innerHTML = '<h1>JUST KIDDING!</h1>';
     document.getElementById('story').innerHTML = results;
+    console.log(logs);
     
 }
 
