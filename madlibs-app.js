@@ -1,19 +1,3 @@
-<html>
-<head>
-<link rel=stylesheet href=style.css>
-<title>Mad Libs!</title>
-</head>
-<body>
-    <div id=container>
-        <h1 id=title>Your Epic Adventure!</h1>
-        <div id=story>
-            <h2>Let's write a 'random' story! Press launch & enter words into the prompts to create your own epic adventure!</h2>
-            <button id=launch onclick=madLibs()>Launch!</button>
-        </div>
-    </div>
-</body>
-<script>
-
 function madLibs(){
 
     // Create parts-of-speech prompts
@@ -37,7 +21,7 @@ function madLibs(){
     
     // Loop per round of prompts
     for (var round = 1; round > 0; round++) {
-        
+
         var types = Math.floor(Math.random() * 8);  // Randomize prompt
         word = window.prompt(speech[types]);    // Prompt user according to random input type
 
@@ -47,7 +31,7 @@ function madLibs(){
         else {
             logs[types].push(` ${word}`);       // Else, push word into corresponding log
         }
-
+    
         // Send alerts at certain rounds
         if (round == 8){
             alert(`Keep on going, ${name}! This story is shaping up nicely! :)`)
@@ -59,7 +43,7 @@ function madLibs(){
             alert(`${name}, I think you should just 'Cancel' and take a break :)`)
         }
     }
-
+    
     // Base story on how many rounds they went
     if (round < 10){
         var summary = 'They were not very patient!'
@@ -70,7 +54,7 @@ function madLibs(){
     else if (round >= 17){
         var summary = 'They were very gullible!'
     }
-    
+        
     // Output results and explanations for story
     var results = (`
         <h2>LOL! The jokes on you! The real story is...</h2>
@@ -91,8 +75,5 @@ function madLibs(){
     `)
     document.getElementById('title').innerHTML = '<h1>JUST KIDDING!</h1>'
     document.getElementById('story').innerHTML = results;
-    
+        
 }
-
-</script>
-</html>
