@@ -42,7 +42,7 @@ function madLibs(){
     alert(`Hello, ${name}! Let's begin our story. Once upon a time...`);
     
     // Loop per round of prompts
-    for (var round = 1; round > 0; round++) {
+    for (var round = 1; true; round++) {
         
         var types = Math.floor(Math.random() * 8);  // Randomize prompt
         word = window.prompt(`(${round}) ` + speech[types]);        // Prompt user according to random input type
@@ -83,8 +83,7 @@ function madLibs(){
         <p>"There once was a person named ${name}. ${summary}"</p>
         <h2>What just happened?</h2>
         <p>You were tricked into a randomized, infinite loop of prompts!</p>
-        <h2>You 'scored' ${round-1} words!</h2>
-        <p>${name}, here are your results:</p>
+        <h2>${name}'s <i>score</i>: ${round-1} words!</h2>
         <ul><li>Nouns (${logs[0].length}):${logs[0]}</li>
             <li>Pronouns (${logs[1].length}):${logs[1]}</li>
             <li>Verbs (${logs[2].length}):${logs[2]}</li>
